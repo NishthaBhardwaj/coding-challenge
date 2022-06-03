@@ -2,15 +2,15 @@ version: "3.8"
 
 services:
 
-  phones-parser:
-    image: nbhardwaj/german-phone-parser:latest
+  code-challenge:
+    image: nbhardwaj/backend-coding-challenge:latest
     ports:
       - "9000:9000"
     networks:
-      - de-mobile-network
+      - demobile-network
 
 networks:
-  navvish-network:
+  demobile-network:
 
 
 
