@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+
+  phones-parser:
+    image: nbhardwaj/german-phone-parser:latest
+    ports:
+      - "9000:9000"
+    networks:
+      - de-mobile-network
+
+networks:
+  navvish-network:
+
+
+

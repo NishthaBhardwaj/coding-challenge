@@ -1,0 +1,5 @@
+de/mobile/controller/AdResourceTest.class
+de/mobile/repository/MobileAdRepositoryTest.class
+de/mobile/controller/AdAndCustomerIT.class
+de/mobile/TestUtil.class
+de/mobile/service/impl/MobileAdServiceImplTest.class
