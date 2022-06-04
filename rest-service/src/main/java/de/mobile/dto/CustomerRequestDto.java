@@ -29,4 +29,6 @@ public class CustomerRequestDto {
     @Email
     private String email;
 
+    private String companyName;
+
 }

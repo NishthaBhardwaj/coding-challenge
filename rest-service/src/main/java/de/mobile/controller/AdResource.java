@@ -3,6 +3,7 @@ package de.mobile.controller;
 import de.mobile.dto.AdResponseDto;
 import de.mobile.dto.AdRequestDto;
 import de.mobile.service.MobileAdService;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,11 @@ public class AdResource implements ControllerService {
         return adService.retrieveMobileAdById(Long.valueOf(adId));
     }
 
+    @ApiOperation(value = "Create the AD",
+            notes = "Validation is applied on every field except description." +
+                    "Allowed Categories are Car, Motorbike, Truck. Application returns a " +
+                    "URL containing Ad ID in the response header named “Location”. " +
+                    "This URL can we used to get the created AD.")
     @PostMapping
     public ResponseEntity<String> createAd(@Valid @RequestBody AdRequestDto ad) {
         log.info("Incoming Ad data {} ", ad);

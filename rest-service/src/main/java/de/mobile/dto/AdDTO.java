@@ -1,6 +1,6 @@
 package de.mobile.dto;
 
-import de.mobile.Category;
+import de.mobile.domain.Category;
 import lombok.Data;
 import lombok.ToString;
 

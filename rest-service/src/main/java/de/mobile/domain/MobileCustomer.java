@@ -19,7 +19,7 @@ public class MobileCustomer {
     /*@OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
     private List<MobileAd> ads= new ArrayList<>();
 */
-    @ManyToMany(mappedBy = "customers")
+    @ManyToMany(mappedBy = "customers" , cascade = CascadeType.DETACH)
     private List<MobileAd> ads= new ArrayList<>();
 
     private String firstName;

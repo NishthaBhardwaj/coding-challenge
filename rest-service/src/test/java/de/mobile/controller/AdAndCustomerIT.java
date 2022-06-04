@@ -1,6 +1,6 @@
 package de.mobile.controller;
 
-import de.mobile.Category;
+import de.mobile.domain.Category;
 import de.mobile.dto.AdRequestDto;
 import de.mobile.dto.CustomerRequestDto;
 import org.json.JSONException;
@@ -11,8 +11,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.HttpClientErrorException;
+
+import java.math.BigDecimal;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -39,11 +44,12 @@ public class AdAndCustomerIT {
     @Test
     public void createAdIT() {
         AdRequestDto ad = new AdRequestDto();
-        Long[] customersID= {2001L};
+        Long[] customersID = {2001L};
         ad.setCustomerId(customersID);
         ad.setCategory(Category.Motorbike.toString());
         ad.setMake("Volvo");
         ad.setModel("4009E");
+        ad.setPrice(new BigDecimal("155.90"));
 
         String url = "http://localhost:" + port + "/ad";
         ResponseEntity<AdRequestDto> response =
@@ -77,6 +83,6 @@ public class AdAndCustomerIT {
 
         assertThat(getResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(getResponse.getBody()).isNotNull();
-
     }
+
 }

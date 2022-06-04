@@ -30,22 +30,18 @@ public class MobileAdServiceImpl implements MobileAdService {
     @Override
     @Transactional
     public AdResponseDto insertMobileAd(AdRequestDto adDto) {
-        Long[] customerId = adDto.getCustomerId();
-        List<MobileCustomer> customersList = new ArrayList<>();
-       for(Long custID: customerId){
-           MobileCustomer mobileCustomer = customerRepository.findById(custID)
-                   .orElseThrow(() -> new ResourceNotFoundException("Customer", "Id : " + custID));
-           customersList.add(mobileCustomer);
-       }
-       MobileAd mobileAd = modelMapper.map(adDto,MobileAd.class);
-       log.debug("incoming data -> {} ", mobileAd);
+        log.debug("incoming data -> {} ", adDto);
 
-       mobileAd.setCustomers(customersList);
-       MobileAd entity = repository.save(mobileAd);
-       return mapToDTO(entity);
+        List<MobileCustomer> customersList = getMobileCustomers(adDto);
+        MobileAd mobileAd = modelMapper.map(adDto, MobileAd.class);
+
+        mobileAd.setCustomers(customersList);
+        MobileAd entity = repository.save(mobileAd);
+        return modelMapper.map(entity, AdResponseDto.class);
     }
 
     @Override
+    @Transactional
     public void deleteMobileAdById(Long mobileAdId) {
         MobileAd ad = repository.findById(mobileAdId)
                 .orElseThrow(() -> new ResourceNotFoundException("Ad" ,"id : " + mobileAdId));
@@ -58,7 +54,7 @@ public class MobileAdServiceImpl implements MobileAdService {
         MobileAd entity = repository.findById(mobileAdId)
                 .orElseThrow(() -> new ResourceNotFoundException("Ad" ,"id : " + mobileAdId));
         log.info("Ad -> {} Customer : {} ",entity,entity.getCustomers());
-        return mapToDTO(entity);
+        return modelMapper.map(entity, AdResponseDto.class);
     }
 
     @Override
@@ -67,21 +63,23 @@ public class MobileAdServiceImpl implements MobileAdService {
 
         if(!ads.isEmpty()){
             List<AdResponseDto> adDtoList = new ArrayList<>();
-            ads.forEach(adEntity -> adDtoList.add(mapToDTO(adEntity)));
+            ads.forEach(adEntity -> adDtoList.add(modelMapper.map(adEntity, AdResponseDto.class)));
             return adDtoList;
         }else{
             throw new ResourceNotFoundException("Ads" ,"");
         }
     }
 
-    private AdResponseDto mapToDTO(MobileAd mobileAd){
-        return modelMapper.map(mobileAd, AdResponseDto.class);
-
-    }
-
-    private MobileAd mapToEntity(AdResponseDto adDto){
-        return modelMapper.map(adDto, MobileAd.class);
-
+    private List<MobileCustomer> getMobileCustomers(AdRequestDto adDto) {
+        Long[] customerId = adDto.getCustomerId();
+        List<MobileCustomer> customersList = new ArrayList<>();
+        for(Long custID: customerId){
+            MobileCustomer mobileCustomer = customerRepository.findById(custID)
+                    .orElseThrow(() -> new ResourceNotFoundException("Customer", "Id : " + custID));
+            customersList.add(mobileCustomer);
+        }
+        log.debug("Customers {}", customersList);
+        return customersList;
     }
 
 }

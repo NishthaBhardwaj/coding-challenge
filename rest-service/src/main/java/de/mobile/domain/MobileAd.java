@@ -1,7 +1,7 @@
 package de.mobile.domain;
 
-import de.mobile.Category;
 import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ public class MobileAd {
     private Long id;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name ="AD_CUSTOMER",
+    @JoinTable(name ="MOBILE_AD_CUSTOMER",
     joinColumns = @JoinColumn(name = "ad_id"), inverseJoinColumns = @JoinColumn(name = "customer_id"))
     private List<MobileCustomer> customers= new ArrayList<>();
 

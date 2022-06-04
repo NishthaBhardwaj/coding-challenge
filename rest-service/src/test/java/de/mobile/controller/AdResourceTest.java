@@ -2,17 +2,16 @@ package de.mobile.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.mobile.Category;
 import de.mobile.TestUtil;
+import de.mobile.domain.Category;
 import de.mobile.domain.MobileAd;
 import de.mobile.domain.MobileCustomer;
-import de.mobile.dto.AdResponseDto;
 import de.mobile.dto.AdRequestDto;
+import de.mobile.dto.AdResponseDto;
 import de.mobile.dto.CustomerDTO;
 import de.mobile.service.MobileAdService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -32,7 +31,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -87,7 +85,8 @@ class AdResourceTest{
 
         AdRequestDto ad = new AdRequestDto();
         ad.setCategory(Category.Motorbike.toString());
-        ad.setMake("Pulsor");
+        ad.setMake("Hero");
+        ad.setPrice(new BigDecimal("500.58"));
         Long[] customersID= {10001L};
         ad.setCustomerId(customersID);
         ad.setModel("A1234");

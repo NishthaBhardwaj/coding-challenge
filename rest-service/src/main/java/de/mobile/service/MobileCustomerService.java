@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface MobileCustomerService {
 
-    CustomerRequestDto insertMobileCustomer(CustomerRequestDto customerDto);
+    CustomerResponseDto insertMobileCustomer(CustomerRequestDto customerDto);
 
     void deleteMobileCustomerById(Long customerId);
 

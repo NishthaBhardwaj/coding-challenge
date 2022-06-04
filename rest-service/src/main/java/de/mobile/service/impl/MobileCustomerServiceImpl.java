@@ -1,5 +1,6 @@
 package de.mobile.service.impl;
 
+import de.mobile.domain.MobileAd;
 import de.mobile.domain.MobileCustomer;
 import de.mobile.dto.CustomerRequestDto;
 import de.mobile.dto.CustomerResponseDto;
@@ -11,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,16 +25,22 @@ public class MobileCustomerServiceImpl implements MobileCustomerService {
     private final ModelMapper modelMapper;
 
     @Override
-    public CustomerRequestDto insertMobileCustomer(CustomerRequestDto customerDto) {
-        return modelMapper.map(
-        repository.save(modelMapper.map(customerDto,MobileCustomer.class)), CustomerRequestDto.class);
+    public CustomerResponseDto insertMobileCustomer(CustomerRequestDto customerDto) {
+        log.debug("CustomerRequestDto -> {}",customerDto);
+        MobileCustomer customer = modelMapper.map(customerDto,MobileCustomer.class);
+        return modelMapper.map(repository.save(customer), CustomerResponseDto.class);
+
+
 
     }
 
     @Override
+    @Transactional
     public void deleteMobileCustomerById(Long customerId) {
-        repository.deleteById(customerId);
-
+        MobileCustomer customer = repository.findById(customerId)
+                .orElseThrow(() -> new ResourceNotFoundException("Customer" ,"id : " + customerId));
+        repository.deleteAdCustomerRelationShip(customerId);
+        repository.delete(customer);
     }
 
     @Override
