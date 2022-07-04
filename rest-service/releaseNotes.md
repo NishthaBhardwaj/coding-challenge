@@ -11,11 +11,13 @@
 
 ### Building the application
 
-The project uses [Maven](https://maven.apache.org/) as a build tool. It already contains ./mvnw wrapper script, so there's no need to install maven.
+The project uses [Maven](https://maven.apache.org/) as a build tool. 
+It already contains ./mvnw wrapper script, so there's no need to install maven.
 
 To build the project execute the following command:
 
 ```bash
+   cd rest-service 
   ./mvnw clean install 
 ```
 

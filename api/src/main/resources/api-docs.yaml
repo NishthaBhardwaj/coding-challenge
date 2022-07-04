@@ -1,0 +1,53 @@
+openapi: 3.0.1
+info:
+  title: Ids API
+  description: Rest API
+  version: "1.0"
+servers:
+- url: http://localhost:8080
+  description: Generated server url
+paths:
+  /ids/accept:
+    get:
+      tags:
+      - ids-controller
+      operationId: accept
+      parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: endpoint
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /ids/report:
+    get:
+      tags:
+      - ids-controller
+      operationId: getRequestsReport
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/FluxReportDto'
+components:
+  schemas:
+    FluxReportDto:
+      type: object
+      properties:
+        prefetch:
+          type: integer
+          format: int32

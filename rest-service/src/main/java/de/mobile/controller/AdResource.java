@@ -22,6 +22,7 @@ public class AdResource implements ControllerService {
 
     private final MobileAdService adService;
 
+    @ApiOperation(value = "Get the Ad by Id")
     @GetMapping("/{id}")
     public AdResponseDto getAd(@NotNull @PathVariable("id") String adId) {
         return adService.retrieveMobileAdById(Long.valueOf(adId));
@@ -31,7 +32,7 @@ public class AdResource implements ControllerService {
             notes = "Validation is applied on every field except description." +
                     "Allowed Categories are Car, Motorbike, Truck. Application returns a " +
                     "URL containing Ad ID in the response header named “Location”. " +
-                    "This URL can we used to get the created AD.")
+                    "This URL can be used to get the created AD.")
     @PostMapping
     public ResponseEntity<String> createAd(@Valid @RequestBody AdRequestDto ad) {
         log.info("Incoming Ad data {} ", ad);
@@ -41,6 +42,7 @@ public class AdResource implements ControllerService {
     }
 
     @GetMapping
+    @ApiOperation(value = "List All the Ads")
     public List<AdResponseDto> getAllAd() {
         return adService.retrieveAllMobileAd();
     }

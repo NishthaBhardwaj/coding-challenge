@@ -1,0 +1,25 @@
+2022-06-06 00:32:37,110 INFO de.mobile.repository.MobileAdRepositoryTest [main] Starting MobileAdRepositoryTest on nishthas-MacBook-Pro.local with PID 79713 (started by nishthabhardwaj in /Volumes/My Files/nishtha-learnings/coding-challenge/rest-service)
+2022-06-06 00:32:37,119 DEBUG de.mobile.repository.MobileAdRepositoryTest [main] Running with Spring Boot v2.1.9.RELEASE, Spring v5.1.10.RELEASE
+2022-06-06 00:32:37,139 INFO de.mobile.repository.MobileAdRepositoryTest [main] No active profile set, falling back to default profiles: default
+2022-06-06 00:32:41,020 INFO de.mobile.repository.MobileAdRepositoryTest [main] Started MobileAdRepositoryTest in 4.751 seconds (JVM running for 8.396)
+2022-06-06 00:32:41,545 INFO de.mobile.controller.AdResourceTest [main] Starting AdResourceTest on nishthas-MacBook-Pro.local with PID 79713 (started by nishthabhardwaj in /Volumes/My Files/nishtha-learnings/coding-challenge/rest-service)
+2022-06-06 00:32:41,546 DEBUG de.mobile.controller.AdResourceTest [main] Running with Spring Boot v2.1.9.RELEASE, Spring v5.1.10.RELEASE
+2022-06-06 00:32:41,547 INFO de.mobile.controller.AdResourceTest [main] No active profile set, falling back to default profiles: default
+2022-06-06 00:32:43,130 INFO de.mobile.controller.AdResourceTest [main] Started AdResourceTest in 1.644 seconds (JVM running for 10.506)
+2022-06-06 00:32:43,365 INFO de.mobile.controller.AdResource [main] Incoming Ad data AdRequestDto(id=null, make=Hero, customerId=[10001], model=A1234, category=Motorbike, description=null, price=500.58) 
+2022-06-06 00:32:43,487 INFO de.mobile.controller.AdAndCustomerIT [main] Starting AdAndCustomerIT on nishthas-MacBook-Pro.local with PID 79713 (started by nishthabhardwaj in /Volumes/My Files/nishtha-learnings/coding-challenge/rest-service)
+2022-06-06 00:32:43,488 DEBUG de.mobile.controller.AdAndCustomerIT [main] Running with Spring Boot v2.1.9.RELEASE, Spring v5.1.10.RELEASE
+2022-06-06 00:32:43,488 INFO de.mobile.controller.AdAndCustomerIT [main] No active profile set, falling back to default profiles: default
+2022-06-06 00:32:46,603 INFO de.mobile.controller.AdAndCustomerIT [main] Started AdAndCustomerIT in 3.153 seconds (JVM running for 13.978)
+2022-06-06 00:32:46,846 INFO de.mobile.controller.CustomerResource [http-nio-auto-1-exec-1] Incoming customer data CustomerRequestDto(id=null, firstName=Mark, lastName=Den, email=mark@gmail.com, companyName=null) 
+2022-06-06 00:32:46,881 DEBUG de.mobile.service.impl.MobileCustomerServiceImpl [http-nio-auto-1-exec-1] CustomerRequestDto -> CustomerRequestDto(id=null, firstName=Mark, lastName=Den, email=mark@gmail.com, companyName=null)
+2022-06-06 00:32:46,967 DEBUG de.mobile.service.impl.MobileCustomerServiceImpl [http-nio-auto-1-exec-2] Customer -> de.mobile.domain.MobileCustomer@e5f4f0e [] 
+2022-06-06 00:32:47,019 INFO de.mobile.service.impl.MobileAdServiceImpl [http-nio-auto-1-exec-3] Ad -> de.mobile.domain.MobileAd@59b558c3 Customer : [de.mobile.domain.MobileCustomer@21c67de1] 
+2022-06-06 00:32:47,125 INFO de.mobile.controller.AdResource [http-nio-auto-1-exec-4] Incoming Ad data AdRequestDto(id=null, make=Volvo, customerId=[2001], model=4009E, category=Motorbike, description=null, price=155.90) 
+2022-06-06 00:32:47,128 DEBUG de.mobile.service.impl.MobileAdServiceImpl [http-nio-auto-1-exec-4] incoming data -> AdRequestDto(id=null, make=Volvo, customerId=[2001], model=4009E, category=Motorbike, description=null, price=155.90) 
+2022-06-06 00:32:47,133 DEBUG de.mobile.service.impl.MobileAdServiceImpl [http-nio-auto-1-exec-4] Customers [de.mobile.domain.MobileCustomer@4f259cf0]
+2022-06-06 00:32:47,628 DEBUG de.mobile.service.impl.MobileAdServiceImpl [main] incoming data -> AdRequestDto(id=null, make=Honda, customerId=[200], model=5467, category=Car, description=null, price=null) 
+2022-06-06 00:32:47,628 DEBUG de.mobile.service.impl.MobileAdServiceImpl [main] Customers [de.mobile.domain.MobileCustomer@142dbf1a]
+2022-06-06 00:32:47,632 DEBUG de.mobile.service.impl.MobileAdServiceImpl [main] incoming data -> AdRequestDto(id=null, make=Honda, customerId=[200], model=5467, category=Car, description=null, price=null) 
+2022-06-06 00:32:47,638 INFO de.mobile.service.impl.MobileAdServiceImpl [main] Ad -> de.mobile.domain.MobileAd@2139aa1f Customer : [de.mobile.domain.MobileCustomer@142dbf1a] 
+2022-06-06 00:32:47,663 DEBUG de.mobile.service.impl.MobileCustomerServiceImpl [main] CustomerRequestDto -> CustomerRequestDto(id=null, firstName=Betty, lastName=Ben2, email=Betty@gmail.com, companyName=null)

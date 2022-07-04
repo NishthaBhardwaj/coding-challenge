@@ -1,0 +1,27 @@
+docker exec -it kafka_kafka_1 bash
+cd /opt/bitnami/kafka/bin
+
+kafka-console-consumer.sh --bootstrap-server kafka:9092 --topic request.count --from-beginning
+kafka-console-consumer.sh --bootstrap-server kafka:9093 --topic request.count --from-beginning
+
+ab -n 10000 -c 2 -k http://localhost:8080/ids/accept/\?id\=356
+
+
+
+api api:
+    image: nbhardwaj/request-api
+    ports:
+      - "8080:8082"
+    restart: always
+    depends_on:
+      - kafka
+      - redis
+    environment:
+      - DOCKER_DEFAULT_PLATFORM=linux/amd64
+      - SPRING_REDIS_HOST=redis
+      - SPRING_REDIS_PORT=6379
+      - REQUESTCOUNT_SERVICE_URL=http://external-service:8081/external/api/
+      - ENABLE_SCHEDULE=true
+      - AUTO_CREATE_TOPICS_ENABLE=true
+      - SERVER_PORT=8082
+      - SPRING_KAFKA_PRODUCER_BOOTSTRAPSERVERS=kafka:9092

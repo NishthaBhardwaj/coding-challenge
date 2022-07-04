@@ -10,6 +10,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -20,7 +21,7 @@ import java.util.Map;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 @Order(Ordered.HIGHEST_PRECEDENCE)
-@ControllerAdvice
+@RestControllerAdvice
 public class CustomizedResponseEntityExceptionHandle extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)
@@ -53,7 +54,7 @@ public class CustomizedResponseEntityExceptionHandle extends ResponseEntityExcep
                     String message = error.getDefaultMessage();
                     errors.put(fieldName, message);
                 });
-        return new ResponseEntity(errors, BAD_REQUEST);
+        return new ResponseEntity(errors,BAD_REQUEST);
 
     }
 }
